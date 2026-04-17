@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+/* Enable class-based dark mode instead of media query */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --font-active: var(--font-be-vietnam-pro);
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  color-scheme: dark;
+}
+
+html[data-theme='light'],
+body[data-theme='light'] {
+  color-scheme: light;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-be-vietnam-pro), var(--font-geist-sans), sans-serif;
+}
+
+.font-active {
+  font-family: var(--font-active), var(--font-be-vietnam-pro), var(--font-geist-sans), sans-serif;
+}
+
+/* ============================================
+   Custom Scrollbar - Best Practice
+   - Brand color, auto-hide when idle
+   - Desktop & Mobile unified experience
+   ============================================ */
+
+:root {
+  --scrollbar-color: #3b82f6;
+}
+
+/* Base scrollbar - 2px, 60% opacity brand color */
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--scrollbar-color) 60%, transparent);
+  border-radius: 1px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-color);
+}
+
+/* Firefox */
+@supports (scrollbar-color: auto) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--scrollbar-color) 60%, transparent) transparent;
+  }
+}
+
+/* Utility class */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-color);
+  border-radius: 3px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.admin-sidebar-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--scrollbar-color) 75%, transparent) transparent;
+}
+
+.admin-sidebar-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.admin-sidebar-scroll::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--scrollbar-color) 75%, transparent);
+  border-radius: 9999px;
+}
+
+.admin-sidebar-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ============================================
+   Rich editor output (site render)
+   - Match Lexical editor styles on frontend
+   ============================================ */
+.editor-content p {
+  margin: 0 0 8px 0;
+}
+
+.editor-content h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+}
+
+.editor-content h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+}
+
+.editor-content h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.editor-content ul {
+  list-style-type: disc;
+  padding-left: 24px;
+  margin: 8px 0;
+}
+
+.editor-content ol {
+  list-style-type: decimal;
+  padding-left: 24px;
+  margin: 8px 0;
+}
+
+.editor-content li {
+  margin: 4px 0;
+}
+
+.editor-content blockquote {
+  border-left: 4px solid #cbd5e1;
+  margin: 8px 0;
+  padding-left: 16px;
+  color: #64748b;
+  font-style: italic;
+}
+
+.editor-content strong {
+  font-weight: 700;
+}
+
+.editor-content a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.editor-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 8px 0;
+  border-radius: 4px;
+}
+.editor-content .editor-youtube {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  margin: 12px 0;
+  overflow: hidden;
+  background: #000;
+}
+.editor-content .editor-youtube iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 6px;
+  display: block;
+}
+
+/* ============================================
+   Marquee Animation - for ProductCategories
+   ============================================ */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
