@@ -183,6 +183,11 @@ export default function PostDetailPage({ params }: PageProps) {
     }
   }, [post?._id, incrementViews, isVisiblePost]);
 
+  const categorySlugMap = useMemo(() => {
+    if (!categories) {return new Map<string, string>();}
+    return new Map(categories.map((item) => [item._id, item.slug]));
+  }, [categories]);
+
   if (post === undefined) {
     return <PostDetailSkeleton />;
   }
@@ -206,11 +211,6 @@ export default function PostDetailPage({ params }: PageProps) {
       </div>
     );
   }
-
-  const categorySlugMap = useMemo(() => {
-    if (!categories) {return new Map<string, string>();}
-    return new Map(categories.map((item) => [item._id, item.slug]));
-  }, [categories]);
 
   // Filter out current post from related
   const filteredRelated = relatedPosts?.page.filter(p => p._id !== post._id).slice(0, 3) ?? [];
